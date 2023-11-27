@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mysql8:
+    container_name: mysql8
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    networks:
+      - mysql8
+    volumes:
+      - mysql8:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+
+volumes:
+  mysql8:
+    external: true
+
+networks:
+  mysql8:
+    external: true
